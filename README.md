@@ -1,8 +1,8 @@
-*** Intro
+***Intro
 
 A Vundle bundle for making Scala pretty in Vim.
 
-*** Quickstart
+***Quickstart
 
 Add the following line to your .vimrc in the Vundle section:
 
@@ -12,7 +12,7 @@ See Vundle docs for more detail:
 
 https://github.com/gmarik/vundle#readme
 
-*** Source 
+***Source 
 
 https://github.com/scala/scala-dist/tree/master/tool-support/src/vim
 
