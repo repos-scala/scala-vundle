@@ -6,7 +6,7 @@ A Vundle bundle for making Scala pretty in Vim.
 
 Add the following line to your .vimrc in the Vundle section:
 
-Bundle repos-scala/scala-vundle
+`Bundle repos-scala/scala-vundle`
 
 See Vundle docs for more detail:
 
