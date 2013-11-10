@@ -10,7 +10,7 @@ let b:did_indent = 1
 
 setlocal indentexpr=GetScalaIndent()
 
-setlocal indentkeys=0{,0},0),!^F,<>>,<CR>
+setlocal indentkeys=0{,0},0),!^F,<>>,o,O
 
 setlocal autoindent shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
@@ -79,6 +79,24 @@ function! GetScalaIndent()
   if thisline =~ '^\s*[})]' 
         \ || thisline =~ '^\s*</[a-zA-Z][^>]*>'
     let ind = ind - &shiftwidth
+  endif
+
+  " Indent multi-lines comments
+  if prevline =~ '^\s*\/\*\($\|[^*]\(\(\*\/\)\@!.\)*$\)'
+    let ind = ind + 1
+  endif
+
+  " Indent multi-lines ScalaDoc
+  if prevline =~ '^\s*\/\*\*\($\|[^*]\(\(\*\/\)\@!.\)*$\)'
+    let ind = ind + 2
+  endif
+
+  " Dedent after multi-lines comments & ScalaDoc
+  if prevline =~ '^\s*\(\(\/\*\)\@!.\)*\*\/.*$'
+    " Dedent 1
+    let ind = ind - 1
+    " Align to any multiple of 'shiftwidth'
+    let ind = ind - (ind % &shiftwidth)
   endif
 
   return ind
